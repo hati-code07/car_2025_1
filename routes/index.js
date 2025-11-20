@@ -8,15 +8,29 @@ router.get('/', function(req, res, next) {
 
 /* страница порш */
 router.get('/porsche', function(req, res, next) {
-  res.send("<h1>Страница Porsche</h1>") });
+  res.render('car', 
+    { title: 'Porsche Cayenne', 
+    picture: "/images/porsche.jpg", 
+    desc: "Откройте для себя Porsche Cayenne 2024 — где каждая деталь продумана для идеального вождения. Динамичный дизайн, интуитивный интерфейс и непревзойденная производительность превращают обычные маршруты в захватывающие путешествия."  });
+});
+
 
 /* страница гольф */
 router.get('/golf', function(req, res, next) {
-  res.send("<h1>Страница Golf GTI</h1>") });
+  res.render('car', 
+    { title: 'Golf GTI', 
+    picture: "/images/golf.jpg", 
+    desc: "Откройте для себя Volkswagen Golf GTI 2025 — идеальный симбиоз мощности и практичности. Агрессивный дизайн, моментальный отклик и фирменная клетка GTI создают неповторимый характер этого спортивного хетчбэка."  });
+});
+
 
 /* страница bmw */
 router.get('/bmw', function(req, res, next) {
-  res.send("<h1>Страница BMW M5 F90 Competition</h1>") });
+    res.render('car', 
+    { title: 'BMW M5 F90 Competition', 
+    picture: "/images/m5f90.jpeg", 
+    desc: "Легендарный BMW M5 Competition сочетает в себе элегантность бизнес-седана с характером гоночного автомобиля. Усиленные двигатель V8 Biturbo, спортивная подвеска Competition и агрессивный дизайн подчеркивают его исключительный статус."  });
+});
 
 
 
