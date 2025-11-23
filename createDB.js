@@ -1,8 +1,10 @@
 const { MongoClient } = require('mongodb');
 var data = require("./data.js").data;
+console.log(data)
+
 const url = 'mongodb://localhost:27017';
 const client = new MongoClient(url);
-const dbName = 'test2024';
+const dbName = 'car2025';
 
 async function main() {
   try {
@@ -11,7 +13,7 @@ async function main() {
     console.log('Connected successfully to server');
     
     const db = client.db(dbName);
-    const collection = db.collection('documents');
+    const collection = db.collection('cars');
 
     // Вставка документов
     const insertResult = await collection.insertMany([
