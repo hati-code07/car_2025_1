@@ -1,7 +1,19 @@
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://127.0.0.1:27017/car2025');
+var schema = mongoose.Schema({ name: String })
 
-const Car = mongoose.model('Car', { name: String });
+schema.methods.rauf = function(){
+   console.log(this.name + " for you")
+}
 
-const cr = new Car ({ name: 'Top_cars' });
-cr.save().then(() => console.log('rauf'));
+const Car = mongoose.model('Car',schema);
+
+const cr = new Car ({ name: 'Top cars' });
+cr.save().then(() => cr.rauf());
+
+
+
+
+
+
+
