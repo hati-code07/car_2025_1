@@ -35,10 +35,10 @@ async function main() {
 }
 
 // Запуск с правильной обработкой
-main()
-  .then(result => console.log('Success:', result))
-  .catch(error => console.error('Failed:', error))
-  .finally(async () => {
-    await client.close();
-    console.log('Connection closed');
-  });
+// main()
+//   .then(result => console.log('Success:', result))
+//   .catch(error => console.error('Failed:', error))
+//   .finally(async () => {
+//     await client.close();
+//     console.log('Connection closed');
+//   });

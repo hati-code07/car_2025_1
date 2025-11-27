@@ -3,9 +3,12 @@ var router = express.Router();
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
-  res.render('index', { title: 'Express' });
+   res.render('Новый маршрутизатор, для маршрутов, начинающихся с cars');  
+  //index', { title: 'Express' }
 });
-
+router.get("/:nick", function(req, res, next) {
+    res.send(req.params.nick);
+})
 /* страница порш */
 router.get('/porsche', function(req, res, next) {
   res.render('car', 
