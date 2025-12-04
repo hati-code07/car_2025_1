@@ -4,12 +4,19 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose')
-mongoose.connect('mongodb://localhost/tc2024')
+
+
+mongoose.connect('mongodb://localhost/car2025')
+  .then(() => console.log('✅ MongoDB подключена'))
+  .catch(err => console.error('❌ Ошибка подключения:', err));
 
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+var indexUsers = require('./routes/users');
 var indexCars = require('./routes/cars');
+
+
+
 
 var app = express();
 
@@ -24,9 +31,15 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(function(req, res, next) {
+  res.locals.title = 'Автомобили 2025'; // Значение по умолчанию
+  next();
+});
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/users', indexUsers);
 app.use('/cars', indexCars);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -43,5 +56,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;

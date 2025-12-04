@@ -8,6 +8,7 @@ const dbName = 'car2025';
 
 async function main() {
   try {
+
     // Подключение к серверу
     await client.connect();
     console.log('Connected successfully to server');
@@ -16,12 +17,9 @@ async function main() {
     const collection = db.collection('cars');
 
     // Вставка документов
-    const insertResult = await collection.insertMany([
-      { a: 1 }, 
-      { a: 2 }, 
-      { a: 3 }
-    ]);
+    const insertResult = await collection.insertMany(data);
     console.log('Inserted documents =>', insertResult);
+    
 
     // Чтение для проверки
     const findResult = await collection.find({}).toArray();
@@ -34,11 +32,11 @@ async function main() {
   }
 }
 
-// Запуск с правильной обработкой
-// main()
-//   .then(result => console.log('Success:', result))
-//   .catch(error => console.error('Failed:', error))
-//   .finally(async () => {
-//     await client.close();
-//     console.log('Connection closed');
-//   });
+//Запуск с правильной обработкой
+main()
+  .then(result => console.log('Success:', result))
+  .catch(error => console.error('Failed:', error))
+  .finally(async () => {
+    await client.close();
+    console.log('Connection closed');
+  });
