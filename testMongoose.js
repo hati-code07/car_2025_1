@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-mongoose.connect('mongodb://127.0.0.1:27017/car2025');
+mongoose.connect('mongodb://127.0.0.1:27017/carMongoose2025');
 //var schema = mongoose.Schema({ name: String })
 var Car = require('./models/car.js').Car
 
