@@ -6,6 +6,8 @@ var logger = require('morgan');
 var mongoose = require('mongoose')
 var session = require("express-session")
 
+//var MongoStore = require('connect-mongo');
+const { default: MongoStore } = require('connect-mongo');
 
 
 mongoose.connect('mongodb://localhost/car2025')
@@ -42,11 +44,20 @@ app.use(function(req, res, next) {
 
 app.use(session({
  secret: "FavouriteCar",
- cookie:{maxAge:60*1000},
- proxy: true,
- resave: true,
- saveUninitialized: true
-}))
+ cookie:{
+    maxAge: 24 * 60 * 60 * 1000, // 24 часа (рекомендую увеличить)
+    httpOnly: true,
+    secure: false, // false для localhost
+    sameSite: 'lax'
+ },
+ // proxy: true,
+ resave: false,
+ saveUninitialized: false,
+ store: MongoStore.create({
+    mongoUrl: 'mongodb://localhost:27017/car2025', // Просто используйте mongoUrl
+    collectionName: 'sessions'
+  })
+}));
 
 
 
