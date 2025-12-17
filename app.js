@@ -4,11 +4,14 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose')
+var session = require("express-session")
+
 
 
 mongoose.connect('mongodb://localhost/car2025')
   .then(() => console.log('✅ MongoDB подключена'))
   .catch(err => console.error('❌ Ошибка подключения:', err));
+
 
 
 var indexRouter = require('./routes/index');
@@ -35,6 +38,17 @@ app.use(function(req, res, next) {
   res.locals.title = 'Автомобили 2025'; // Значение по умолчанию
   next();
 });
+
+
+app.use(session({
+ secret: "FavouriteCar",
+ cookie:{maxAge:60*1000},
+ proxy: true,
+ resave: true,
+ saveUninitialized: true
+}))
+
+
 
 app.use('/', indexRouter);
 app.use('/users', indexUsers);
