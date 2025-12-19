@@ -64,6 +64,7 @@ app.use(function(req,res,next){
  next()
  })
 
+app.use(require("./middlewares/createMenu.js"))
 
 
 app.use('/', indexRouter);
