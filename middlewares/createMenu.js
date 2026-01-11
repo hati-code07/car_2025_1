@@ -33,7 +33,6 @@ module.exports = async function(req, res, next) {
       // Если нет автомобилей
       res.locals.nav = [
         { name: "Главная", url: "/", icon: "🏠" },
-        { name: "Добавить авто", url: "/cars/new", icon: "➕" }
       ];
     }
     

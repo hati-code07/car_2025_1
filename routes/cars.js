@@ -17,11 +17,14 @@ router.get("/:nick", checkAuth, async function(req, res, next) {
    if(!cars.length) return next(new Error("Нет такой машины в каталоге"))
        var car = cars[0];
        res.render('car', {
-           tite: car.title,
+           title: car.title,
            picture: car.avatar,
            desc: car.desc
        })
 });
+
+
+
 
 
 module.exports = router;

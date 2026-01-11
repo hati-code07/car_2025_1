@@ -44,8 +44,19 @@
            </li>
             <% } %>
          </ul>
+           <!-- AUTH INFO -->
+        <div class="d-flex align-items-center gap-2 me-3">
+          <% if (user) { %>
+            <span class="text-muted small">
+              👤 <%= user.username || 'Пользователь' %>
+            </span>
+          <% } %>
+        </div>
+
+         
               <ul class="nav navbar-nav navbar-right">
           <%if(user){%>
+            
           <form action="/logout" method="post">
               <li class="nav-item">
                 <button type="submit" class="nav-link">Выйти</button>

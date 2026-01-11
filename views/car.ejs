@@ -1,4 +1,60 @@
-<% layout('./layout/page.ejs') %>
+<!-- <% layout('./layout/page.ejs') %>
 <h1><%= title %></h1>
 <img src="<%= picture %>" alt="" style="width: 500px; height: auto"/>
-<h4>Несколько слов о машине: <%=desc%></h4>
+<h4>Несколько слов о машине: <%=desc%></h4> -->
+
+<% layout('./layout/page.ejs') %>
+
+<section class="car-hero fade-in" style="background-image: url('<%= picture %>')">
+  <div class="car-hero__overlay"></div>
+
+  <div class="container car-hero__content">
+    <h1 class="car-hero__title"><%= title %></h1>
+
+    <div class="car-stats mt-4">
+      <div>
+        <div class="stat-value">2025</div>
+        <div class="stat-label">Год</div>
+      </div>
+      <div>
+        <div class="stat-value">AWD</div>
+        <div class="stat-label">Привод</div>
+      </div>
+      <div>
+        <div class="stat-value">🔥</div>
+        <div class="stat-label">Класс</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="container my-5 fade-in">
+  <div class="row gy-4">
+
+    <!-- DESCRIPTION -->
+    <div class="col-lg-8">
+      <article class="card p-4">
+        <h2 class="h4 mb-3">Описание автомобиля</h2>
+        <p class="text-muted fs-6">
+          <%= desc %>
+        </p>
+      </article>
+    </div>
+
+    <!-- ACTIONS -->
+    <div class="col-lg-4">
+      <aside class="card p-4 sticky-top" style="top: 90px">
+        <h3 class="h5 mb-3">Действия</h3>
+
+
+    
+          <a href="/" class="btn btn-link">
+            ← На главную
+          </a>
+        </div>
+      </aside>
+    </div>
+
+  </div>
+</section>
+

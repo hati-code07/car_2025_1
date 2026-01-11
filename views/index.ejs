@@ -1,88 +1,94 @@
+
 <% layout('./layout/page.ejs') %>
-<p>Счетчик: <%= counter %></p> 
 
-<div class="fade-in">
-    <!-- Герой секция -->
-    <section class="hero text-center py-5 mb-5">
-        <div class="container">
-            <h1 class="display-4 mb-4">Добро пожаловать в <%= siteTitle || 'наш проект' %></h1>
-            <p class="lead mb-4">Лучшее решение для управления автомобилями</p>
-            <div class="dropdown">
-    <button class="btn btn-primary btn-lg dropdown-toggle" type="button" 
-            id="carsDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-        <i class="fas fa-car"></i> Выбрать автомобиль
-    </button>
-    
-    <ul class="dropdown-menu" aria-labelledby="carsDropdown">
-        <li><a class="dropdown-item" href="/cars/porsche">
-            <i class="fas fa-sports-car"></i> Porsche Cayenne
-        </a></li>
-        <li><a class="dropdown-item" href="/cars/golf">
-            <i class="fas fa-hatchback"></i> Golf GTI 2025
-        </a></li>
-        <li><a class="dropdown-item" href="/cars/bmw">
-            <i class="fas fa-sedan"></i> BMW M5 F90
-        </a></li>
+<section class="page fade-in">
 
-    </ul>
-</div>
-        </div>
-    </section>
-    
-    <!-- Карточки с фичами -->
-    <div class="row">
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body text-center">
-                    <i class="fas fa-bolt fa-3x text-primary mb-3"></i>
-                    <h3>Быстро</h3>
-                    <p>Мгновенный доступ ко всем функциям системы</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body text-center">
-                    <i class="fas fa-shield-alt fa-3x text-primary mb-3"></i>
-                    <h3>Надежно</h3>
-                    <p>Ваши данные защищены современными технологиями</p>
-                </div>
-            </div>
-        </div>
-        <div class="col-md-4 mb-4">
-            <div class="card h-100">
-                <div class="card-body text-center">
-                    <i class="fas fa-users fa-3x text-primary mb-3"></i>
-                    <h3>Удобно</h3>
-                    <p>Интуитивно понятный интерфейс для всех пользователей</p>
-                </div>
-            </div>
-        </div>
+  <!-- HERO -->
+  <header class="hero text-center py-5 mb-5">
+    <div class="container">
+      <p class="text-muted mb-2">Счетчик посещений: <%= counter %></p>
+
+      <h1 class="display-4 mb-3">
+        Добро пожаловать в <%= siteTitle || 'наш проект' %>
+      </h1>
+
+      <p class="lead mb-4">
+        Учебный проект для управления автомобилями
+      </p>
+
+      <div class="dropdown d-inline-block">
+        <button
+          class="btn btn-primary btn-lg dropdown-toggle"
+          type="button"
+          id="carsDropdown"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          🚗 Выбрать автомобиль
+        </button>
+
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="/cars/porsche">Porsche Cayenne</a></li>
+          <li><a class="dropdown-item" href="/cars/golf">Golf GTI 2025</a></li>
+          <li><a class="dropdown-item" href="/cars/bmw">BMW M5 F90</a></li>
+        </ul>
+      </div>
     </div>
-    
-    <!-- Форма входа (пример) -->
-    <% if (!user) { %>
-    <div class="card mt-5">
-        <div class="card-header">
-            <h3 class="mb-0"><i class="fas fa-sign-in-alt"></i> Быстрый вход</h3>
+  </header>
+
+  <!-- FEATURES -->
+  <section class="container mb-5">
+    <div class="row g-4">
+
+      <% const features = [
+        { icon: '⚡', title: 'Быстро', text: 'Мгновенный доступ ко всем функциям' },
+        { icon: '🔒', title: 'Надежно', text: 'Данные защищены современными технологиями' },
+        { icon: '👌', title: 'Удобно', text: 'Интуитивно понятный интерфейс' }
+      ]; %>
+
+      <% features.forEach(feature => { %>
+        <div class="col-md-4">
+          <article class="card h-100 text-center feature-card">
+            <div class="card-body">
+              <div class="feature-icon mb-3"><%= feature.icon %></div>
+              <h3 class="h5"><%= feature.title %></h3>
+              <p class="text-muted"><%= feature.text %></p>
+            </div>
+          </article>
         </div>
-        <div class="card-body">
-            <form action="/logreg" method="post" class="row g-3">
-                <div class="col-md-6">
-                    <label for="username" class="form-label">Имя пользователя</label>
-                    <input type="text" class="form-control" id="username" name="username" required>
-                </div>
-                <div class="col-md-6">
-                    <label for="password" class="form-label">Пароль</label>
-                    <input type="password" class="form-control" id="password" name="password" required>
-                </div>
-                <div class="col-12">
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-sign-in-alt"></i> Войти / Зарегистрироваться
-                    </button>
-                </div>
-            </form>
-        </div>
+      <% }) %>
+
     </div>
-    <% } %>
-</div>
+  </section>
+
+  <!-- AUTH -->
+  <% if (!user) { %>
+  <section class="container mb-5">
+    <article class="card auth-card">
+      <div class="card-header">
+        <h2 class="h5 mb-0">🔑 Быстрый вход</h2>
+      </div>
+
+      <div class="card-body">
+        <form action="/logreg" method="post" class="row g-3">
+          <div class="col-md-6">
+            <label class="form-label">Имя пользователя</label>
+            <input type="text" name="username" class="form-control" required>
+          </div>
+
+          <div class="col-md-6">
+            <label class="form-label">Пароль</label>
+            <input type="password" name="password" class="form-control" required>
+          </div>
+
+          <div class="col-12">
+            <button class="btn btn-primary">Войти / Зарегистрироваться</button>
+          </div>
+        </form>
+      </div>
+    </article>
+  </section>
+  <% } %>
+
+</section>
+
